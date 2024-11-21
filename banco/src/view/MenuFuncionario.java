@@ -107,8 +107,7 @@ public class MenuFuncionario extends JFrame {
     }
 
     public void encerrarConta() {
-        // Abre o formulário de encerrar conta
-        new FormularioEncerrarConta();
+        JOptionPane.showMessageDialog(this, "Encerrar Conta");
     }
 
     public void consultarConta() {
@@ -175,138 +174,16 @@ public class MenuFuncionario extends JFrame {
         frame.setVisible(true);
     }
 
+
     public void alterarDados() {
-        // Criar uma nova janela para alterar os dados da conta
-        JFrame frame = new JFrame("Alterar Dados da Conta");
-        frame.setSize(400, 250);
-        frame.setLocationRelativeTo(null);
-
-        JPanel panel = new JPanel();
-        frame.add(panel);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        JLabel labelNumeroConta = new JLabel("Número da Conta:");
-        JTextField tfNumeroConta = new JTextField(15);
-        JButton btnBuscarConta = new JButton("Buscar Conta");
-
-        JLabel labelNome = new JLabel("Novo Nome:");
-        JTextField tfNome = new JTextField(15);
-        JLabel labelCpf = new JLabel("Novo CPF:");
-        JTextField tfCpf = new JTextField(15);
-
-        // Inicialmente desabilita os campos de nome e cpf
-        tfNome.setEnabled(false);
-        tfCpf.setEnabled(false);
-
-        panel.add(labelNumeroConta);
-        panel.add(tfNumeroConta);
-        panel.add(btnBuscarConta);
-        panel.add(labelNome);
-        panel.add(tfNome);
-        panel.add(labelCpf);
-        panel.add(tfCpf);
-
-        JButton btnAlterar = new JButton("Alterar Dados");
-        btnAlterar.setEnabled(false); // Inicialmente desabilita o botão de alterar
-
-        panel.add(btnAlterar);
-
-        // Ação para buscar a conta
-        btnBuscarConta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String numeroConta = tfNumeroConta.getText().trim();
-
-                if (numeroConta.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "O número da conta deve ser preenchido.");
-                    return;
-                }
-
-                try {
-                    // Tentar carregar as contas do arquivo
-                    List<Conta> contas = DataManager.carregarContas("contas.dat");
-
-                    // Procurar a conta pelo número
-                    boolean contaEncontrada = false;
-                    for (Conta conta : contas) {
-                        if (String.valueOf(conta.getNumero()).equals(numeroConta)) {
-                            // Exibir os dados atuais da conta e habilitar os campos para edição
-                            tfNome.setText(conta.getNome());
-                            tfCpf.setText(conta.getCpf());
-                            tfNome.setEnabled(true);
-                            tfCpf.setEnabled(true);
-                            btnAlterar.setEnabled(true);
-                            contaEncontrada = true;
-                            break;
-                        }
-                    }
-
-                    if (!contaEncontrada) {
-                        JOptionPane.showMessageDialog(frame, "Conta não encontrada.");
-                    }
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(frame, "Erro ao buscar a conta: " + ex.getMessage());
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        // Ação para alterar os dados da conta
-        btnAlterar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String numeroConta = tfNumeroConta.getText().trim();
-                String novoNome = tfNome.getText().trim();
-                String novoCpf = tfCpf.getText().trim();
-
-                if (novoNome.isEmpty() || novoCpf.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "O nome e o CPF devem ser preenchidos.");
-                    return;
-                }
-
-                try {
-                    // Carregar as contas do arquivo
-                    List<Conta> contas = DataManager.carregarContas("contas.dat");
-
-                    // Procurar a conta pelo número
-                    boolean contaAlterada = false;
-                    for (Conta conta : contas) {
-                        if (String.valueOf(conta.getNumero()).equals(numeroConta)) {
-                            // Alterar os dados da conta
-                            conta.setNome(novoNome); // Atualiza o nome
-                            conta.setCpf(novoCpf); // Atualiza o CPF
-                            contaAlterada = true;
-                            break;
-                        }
-                    }
-
-                    if (contaAlterada) {
-                        // Salvar as contas atualizadas no arquivo
-                        DataManager.salvarContas(contas, "contas.dat");
-                        JOptionPane.showMessageDialog(frame, "Dados da conta alterados com sucesso!");
-                        frame.dispose(); // Fecha a janela de alteração de dados
-                    } else {
-                        JOptionPane.showMessageDialog(frame, "Conta não encontrada.");
-                    }
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(frame, "Erro ao alterar os dados: " + ex.getMessage());
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        frame.setVisible(true);
+        JOptionPane.showMessageDialog(this, "Alterar Dados");
     }
 
     public void cadastrarFuncionario() {
-        // Criar uma nova janela para o cadastro de funcionário
-        new TelaCadastroFuncionario();  // Chama a classe que cria o formulário
+        JOptionPane.showMessageDialog(this, "Cadastrar Funcionario");
     }
 
     public void gerarRelatorios() {
         JOptionPane.showMessageDialog(this, "Gerar Relatórios");
     }
 }
-

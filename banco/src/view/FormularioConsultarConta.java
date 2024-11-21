@@ -80,4 +80,10 @@ public class FormularioConsultarConta extends JFrame {
             JOptionPane.showMessageDialog(this, "Número da conta deve ser um número válido.");
         }
     }
+
+
+public static void main(String[] args) {
+    new MenuCliente();
 }
+}
+

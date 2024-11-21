@@ -1,8 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-public class Funcionario implements Serializable {
+public class Funcionario {
     private String nome;
     private String cpf;
     private String telefone;
@@ -10,7 +8,7 @@ public class Funcionario implements Serializable {
     private String usuario;
     private String senha;
 
-    // Construtor completo
+    // Construtor
     public Funcionario(String nome, String cpf, String telefone, String endereco, String usuario, String senha) {
         this.nome = nome;
         this.cpf = cpf;
@@ -18,16 +16,6 @@ public class Funcionario implements Serializable {
         this.endereco = endereco;
         this.usuario = usuario;
         this.senha = senha;
-    }
-
-    // Construtor simplificado para login
-    public Funcionario(String usuario, String senha) {
-        this.usuario = usuario;
-        this.senha = senha;
-        this.nome = ""; // Valores padrão para evitar problemas
-        this.cpf = "";
-        this.telefone = "";
-        this.endereco = "";
     }
 
     // Getters e Setters
@@ -79,14 +67,14 @@ public class Funcionario implements Serializable {
         this.senha = senha;
     }
 
-   @Override
-   public String toString() {
-       return "Funcionario{" +
-               "nome='" + nome + '\'' +
-               ", cpf='" + cpf + '\'' +
-               ", telefone='" + telefone + '\'' +
-               ", endereco='" + endereco + '\'' +
-               ", usuario='" + usuario + '\'' +
-               '}';
-   }
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", usuario='" + usuario + '\'' +
+                '}';
+    }
 }
